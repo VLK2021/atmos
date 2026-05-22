@@ -94,7 +94,12 @@ export const HomePage = () => {
 
             <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
                 <PrecipitationCard day={today} t={t} />
-                <WeatherMapPreviewCard t={t} />
+                <WeatherMapPreviewCard
+                    t={t}
+                    lat={data.location.lat}
+                    lon={data.location.lon}
+                    city={data.location.name}
+                />
             </div>
 
             <WeatherMetricCards current={data.current} t={t} />
