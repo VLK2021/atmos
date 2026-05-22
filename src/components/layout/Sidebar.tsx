@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass } from "lucide-react";
 
 import { NAVIGATION_ITEMS } from "@/src/constants/navigation.constants";
 import { useLanguage } from "@/src/context";
@@ -15,16 +15,24 @@ export const Sidebar = () => {
     const t = lang === "en" ? en : uk;
 
     return (
-        <aside className="hidden h-screen w-[280px] shrink-0 border-r border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-[18px] lg:flex lg:flex-col">
+        <aside className="hidden h-screen w-[250px] shrink-0 border-r border-[var(--color-border)] bg-[var(--color-card)] backdrop-blur-[18px] lg:flex lg:flex-col">
             <div className="flex h-20 items-center gap-3 px-6">
-                <div className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 via-indigo-500 to-amber-400 shadow-lg shadow-sky-500/20">
-                    <Compass className="size-6 text-white" />
+                <div className="flex size-12 items-center justify-center overflow-hidden rounded-2xl bg-white/10 shadow-lg shadow-sky-500/20 ring-1 ring-white/15">
+                    <Image
+                        src="/images/logo/logo.svg"
+                        alt="Atmos logo"
+                        width={48}
+                        height={48}
+                        priority
+                        className="size-12 object-contain"
+                    />
                 </div>
 
                 <div>
                     <h1 className="text-xl font-bold tracking-tight">
                         {t.appName}
                     </h1>
+
                     <p className="text-xs text-[var(--color-text-muted)]">
                         {t.appDescription}
                     </p>
@@ -41,13 +49,13 @@ export const Sidebar = () => {
                             key={href}
                             href={href}
                             className={[
-                                "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all",
+                                "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200",
                                 isActive
                                     ? "bg-gradient-to-r from-sky-500/90 to-indigo-500/90 text-white shadow-lg shadow-sky-500/20"
                                     : "text-[var(--color-text-muted)] hover:bg-white/10 hover:text-[var(--color-text)]",
                             ].join(" ")}
                         >
-                            <Icon className="size-5" />
+                            <Icon className="size-5 shrink-0" />
                             <span>{t[labelKey]}</span>
                         </Link>
                     );
@@ -59,6 +67,7 @@ export const Sidebar = () => {
                     <p className="text-sm font-semibold">
                         {t.currentLocation}
                     </p>
+
                     <p className="mt-1 text-xs text-[var(--color-text-muted)]">
                         Lviv, Ukraine
                     </p>

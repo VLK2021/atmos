@@ -8,6 +8,8 @@ const uk = {
     alerts: "Сповіщення",
     favorites: "Обране",
     settings: "Налаштування",
+    hourly: "Погодинно",
+    weatherMaps: "Погодні карти",
 
     appName: "Atmos",
     appDescription: "Преміальна погода",

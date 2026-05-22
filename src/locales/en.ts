@@ -8,6 +8,8 @@ const en = {
     alerts: "Alerts",
     favorites: "Favorites",
     settings: "Settings",
+    hourly: "Hourly",
+    weatherMaps: "Weather Maps",
 
     appName: "Atmos",
     appDescription: "Premium Weather",
