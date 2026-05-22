@@ -9,10 +9,11 @@ import {
     XAxis,
     YAxis,
 } from "recharts";
-import { Droplets, Thermometer, Wind } from "lucide-react";
+import { Droplets, Wind } from "lucide-react";
 
 import en from "@/src/locales/en";
 import type { ForecastHour } from "@/src/types";
+import { HomeSectionHeader } from "@/src/components/home";
 
 type Locale = typeof en;
 
@@ -23,9 +24,9 @@ type Props = {
 
 export const HourlyForecastCard = ({ hours, t }: Props) => {
     const startHour = new Date().getHours();
-    const visibleHours = hours.slice(startHour, startHour + 12).length
-        ? hours.slice(startHour, startHour + 12)
-        : hours.slice(0, 12);
+
+    const nextHours = hours.slice(startHour, startHour + 12);
+    const visibleHours = nextHours.length ? nextHours : hours.slice(0, 12);
 
     const chartData = visibleHours.map((hour) => ({
         time: hour.time.split(" ")[1],
@@ -41,26 +42,34 @@ export const HourlyForecastCard = ({ hours, t }: Props) => {
             transition={{ duration: 0.4 }}
             className="min-w-0 overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px] sm:p-5"
         >
-            <div className="flex items-center justify-between gap-3">
-                <div>
-                    <h3 className="text-base font-semibold sm:text-lg">
-                        {t.hourlyForecast}
-                    </h3>
-                    <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                        Temperature, rain chance and feels-like trend
-                    </p>
-                </div>
-
-                <Thermometer className="size-5 text-sky-300" />
-            </div>
+            <HomeSectionHeader
+                title={t.hourlyForecast}
+                subtitle="Temperature, rain chance and feels-like trend"
+                href="/hourly"
+                t={t}
+            />
 
             <div className="mt-4 h-[180px] min-w-0">
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={chartData}>
                         <defs>
-                            <linearGradient id="tempGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#38BDF8" stopOpacity={0.45} />
-                                <stop offset="95%" stopColor="#38BDF8" stopOpacity={0} />
+                            <linearGradient
+                                id="tempGradient"
+                                x1="0"
+                                y1="0"
+                                x2="0"
+                                y2="1"
+                            >
+                                <stop
+                                    offset="5%"
+                                    stopColor="#38BDF8"
+                                    stopOpacity={0.45}
+                                />
+                                <stop
+                                    offset="95%"
+                                    stopColor="#38BDF8"
+                                    stopOpacity={0}
+                                />
                             </linearGradient>
                         </defs>
 
@@ -70,7 +79,9 @@ export const HourlyForecastCard = ({ hours, t }: Props) => {
                             axisLine={false}
                             tick={{ fontSize: 11 }}
                         />
+
                         <YAxis hide domain={["dataMin - 2", "dataMax + 2"]} />
+
                         <Tooltip
                             contentStyle={{
                                 borderRadius: "16px",
@@ -78,6 +89,7 @@ export const HourlyForecastCard = ({ hours, t }: Props) => {
                                 background: "rgba(15,23,42,0.92)",
                             }}
                         />
+
                         <Area
                             type="monotone"
                             dataKey="temp"
@@ -107,6 +119,7 @@ export const HourlyForecastCard = ({ hours, t }: Props) => {
                                 <p className="text-xs text-[var(--color-text-muted)]">
                                     {hour.time.split(" ")[1]}
                                 </p>
+
                                 <img
                                     src={iconSrc}
                                     alt={hour.condition.text}

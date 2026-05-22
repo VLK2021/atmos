@@ -5,6 +5,7 @@ import { Moon, Sunrise, Sunset, SunMedium } from "lucide-react";
 
 import en from "@/src/locales/en";
 import type { Astro } from "@/src/types";
+import {HomeSectionHeader} from "@/src/components/home/HomeSectionHeader";
 
 type Locale = typeof en;
 
@@ -21,16 +22,12 @@ export const AstronomyCard = ({ astro, t }: Props) => {
             transition={{ duration: 0.35 }}
             className="flex h-[420px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
-            <div className="flex items-center justify-between">
-                <div>
-                    <h3 className="text-base font-semibold">{t.sunAndMoon}</h3>
-                    <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
-                        Solar arc and lunar data
-                    </p>
-                </div>
-
-                <SunMedium className="size-4 text-amber-300" />
-            </div>
+            <HomeSectionHeader
+                title={t.sunAndMoon}
+                subtitle="Solar arc and lunar data"
+                href="/astronomy"
+                t={t}
+            />
 
             <div className="mt-4 flex flex-1 flex-col rounded-2xl border border-[var(--color-border)] bg-white/5 p-3">
                 <div className="relative mx-auto h-[100px] w-full max-w-[320px] overflow-hidden">

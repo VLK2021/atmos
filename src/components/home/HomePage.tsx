@@ -10,9 +10,13 @@ import type { ForecastResponse } from "@/src/types";
 import {
     AirQualityCard,
     AstronomyCard,
+    DataSourceFooter,
     HeroWeatherCard,
     HomeSkeleton,
     HourlyForecastCard,
+    PrecipitationCard,
+    WeatherAlertsCard,
+    WeatherMapPreviewCard,
     WeatherMetricCards,
     WeeklyForecastCard,
 } from "@/src/components/home";
@@ -35,7 +39,10 @@ export const HomePage = () => {
 
                 const response = await fetch(
                     `/api/weather/forecast?q=Lviv&lang=${lang}&days=7`,
-                    { signal: controller.signal },
+                    {
+                        signal: controller.signal,
+                        cache: "no-store",
+                    },
                 );
 
                 if (!response.ok) {
@@ -73,6 +80,8 @@ export const HomePage = () => {
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 overflow-hidden">
             <HeroWeatherCard data={data} t={t} />
 
+            <WeatherAlertsCard alerts={data.alerts?.alert} t={t} />
+
             <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(340px,0.85fr)]">
                 <HourlyForecastCard hours={today.hour} t={t} />
                 <AirQualityCard airQuality={data.current.air_quality} t={t} />
@@ -83,7 +92,14 @@ export const HomePage = () => {
                 <AstronomyCard astro={today.astro} t={t} />
             </div>
 
+            <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+                <PrecipitationCard day={today} t={t} />
+                <WeatherMapPreviewCard t={t} />
+            </div>
+
             <WeatherMetricCards current={data.current} t={t} />
+
+            <DataSourceFooter data={data} t={t} />
         </div>
     );
 };

@@ -5,6 +5,7 @@ import { Activity, Factory, Wind } from "lucide-react";
 
 import en from "@/src/locales/en";
 import type { AirQuality } from "@/src/types";
+import {HomeSectionHeader} from "@/src/components/home/HomeSectionHeader";
 
 type Locale = typeof en;
 
@@ -42,16 +43,12 @@ export const AirQualityCard = ({ airQuality, t }: Props) => {
             transition={{ duration: 0.35 }}
             className="min-w-0 overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
-            <div className="flex items-center justify-between">
-                <div>
-                    <h3 className="text-base font-semibold">{t.airQualityIndex}</h3>
-                    <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
-                        Particle concentration
-                    </p>
-                </div>
-
-                <Wind className="size-4 text-sky-300" />
-            </div>
+            <HomeSectionHeader
+                title={t.airQualityIndex}
+                subtitle="Particle concentration"
+                href="/air-quality"
+                t={t}
+            />
 
             <div className="mt-4 grid items-center gap-4 sm:grid-cols-[120px_minmax(0,1fr)] xl:grid-cols-1 2xl:grid-cols-[120px_minmax(0,1fr)]">
                 <div className="mx-auto flex flex-col items-center">
