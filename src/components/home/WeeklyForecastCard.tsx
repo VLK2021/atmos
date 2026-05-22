@@ -19,7 +19,7 @@ export const WeeklyForecastCard = ({ days, t }: Props) => {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="flex h-full min-h-[360px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
+            className="flex h-[420px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
             <div className="shrink-0">
                 <h3 className="text-base font-semibold">{t.sevenDayForecast}</h3>
@@ -41,7 +41,7 @@ export const WeeklyForecastCard = ({ days, t }: Props) => {
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.22, delay: index * 0.025 }}
-                                className="grid min-h-[66px] min-w-0 grid-cols-[minmax(90px,1fr)_38px_minmax(95px,1fr)_64px] items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-3 py-2.5 max-sm:grid-cols-[1fr_36px_52px]"
+                                className="grid min-h-[72px] shrink-0 grid-cols-[minmax(90px,1fr)_38px_minmax(95px,1fr)_64px] items-center gap-3 rounded-2xl border border-white/5 bg-white/5 px-3 py-2.5 max-sm:grid-cols-[1fr_36px_52px]"
                             >
                                 <div className="min-w-0">
                                     <p className="truncate text-xs font-semibold">
@@ -87,11 +87,6 @@ export const WeeklyForecastCard = ({ days, t }: Props) => {
                         );
                     })}
                 </div>
-            </div>
-
-            <div className="mt-3 flex shrink-0 items-center justify-between rounded-2xl bg-white/5 px-3 py-2 text-xs text-[var(--color-text-muted)]">
-                <span>{days.length} / {days.length}</span>
-                <span>{t.forecast}</span>
             </div>
         </motion.section>
     );

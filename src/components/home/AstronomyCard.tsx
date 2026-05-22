@@ -19,7 +19,7 @@ export const AstronomyCard = ({ astro, t }: Props) => {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="flex h-full min-h-[360px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
+            className="flex h-[420px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
             <div className="flex items-center justify-between">
                 <div>
