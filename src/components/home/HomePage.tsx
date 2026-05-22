@@ -45,10 +45,7 @@ export const HomePage = () => {
                 const result: ForecastResponse = await response.json();
                 setData(result);
             } catch (error) {
-                if (error instanceof DOMException && error.name === "AbortError") {
-                    return;
-                }
-
+                if (error instanceof DOMException && error.name === "AbortError") return;
                 setError(t.failedLoadWeather);
             } finally {
                 setLoading(false);
@@ -60,13 +57,11 @@ export const HomePage = () => {
         return () => controller.abort();
     }, [lang, t.failedLoadWeather]);
 
-    if (loading) {
-        return <HomeSkeleton />;
-    }
+    if (loading) return <HomeSkeleton />;
 
     if (error || !data) {
         return (
-            <section className="mx-auto w-full max-w-[1440px] rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-6 text-[var(--color-error)] shadow-[var(--shadow-card)] backdrop-blur-[18px]">
+            <section className="mx-auto w-full max-w-[1440px] rounded-[28px] border border-[var(--color-border)] bg-[var(--color-card)] p-5 text-[var(--color-error)] shadow-[var(--shadow-card)] backdrop-blur-[18px]">
                 {error || t.noWeatherData}
             </section>
         );
@@ -79,15 +74,13 @@ export const HomePage = () => {
             <HeroWeatherCard data={data} t={t} />
 
             <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(340px,0.85fr)]">
-                <div className="flex min-w-0 flex-col gap-4">
-                    <HourlyForecastCard hours={today.hour} t={t} />
-                    <WeeklyForecastCard days={data.forecast.forecastday} t={t} />
-                </div>
+                <HourlyForecastCard hours={today.hour} t={t} />
+                <AirQualityCard airQuality={data.current.air_quality} t={t} />
+            </div>
 
-                <div className="flex min-w-0 flex-col gap-4">
-                    <AirQualityCard airQuality={data.current.air_quality} t={t} />
-                    <AstronomyCard astro={today.astro} t={t} />
-                </div>
+            <div className="grid min-w-0 items-stretch gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(340px,0.85fr)]">
+                <WeeklyForecastCard days={data.forecast.forecastday} t={t} />
+                <AstronomyCard astro={today.astro} t={t} />
             </div>
 
             <WeatherMetricCards current={data.current} t={t} />

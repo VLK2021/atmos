@@ -19,7 +19,7 @@ export const AstronomyCard = ({ astro, t }: Props) => {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="min-w-0 overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
+            className="flex h-full min-h-[360px] min-w-0 flex-col overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
             <div className="flex items-center justify-between">
                 <div>
@@ -32,18 +32,14 @@ export const AstronomyCard = ({ astro, t }: Props) => {
                 <SunMedium className="size-4 text-amber-300" />
             </div>
 
-            <div className="mt-4 rounded-2xl border border-[var(--color-border)] bg-white/5 p-3">
-                <div className="relative mx-auto h-[92px] w-full max-w-[320px] overflow-hidden">
-                    <div className="absolute left-2 right-2 top-[46px] h-28 rounded-t-full border-t border-amber-400/80" />
+            <div className="mt-4 flex flex-1 flex-col rounded-2xl border border-[var(--color-border)] bg-white/5 p-3">
+                <div className="relative mx-auto h-[100px] w-full max-w-[320px] overflow-hidden">
+                    <div className="absolute left-2 right-2 top-[50px] h-28 rounded-t-full border-t border-amber-400/80" />
 
                     <motion.div
                         animate={{ left: ["8%", "84%"] }}
-                        transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                        }}
-                        className="absolute top-[37px] size-4 rounded-full bg-amber-300 shadow-[0_0_18px_rgba(251,191,36,0.8)]"
+                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-[41px] size-4 rounded-full bg-amber-300 shadow-[0_0_18px_rgba(251,191,36,0.8)]"
                     />
 
                     <div className="absolute bottom-0 left-0 flex items-center gap-1.5 text-[11px]">
@@ -77,7 +73,7 @@ export const AstronomyCard = ({ astro, t }: Props) => {
                     </div>
                 </div>
 
-                <div className="mt-2 flex items-center gap-3 rounded-xl bg-white/5 p-2.5">
+                <div className="mt-auto flex items-center gap-3 rounded-xl bg-white/5 p-2.5">
                     <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-violet-400/15">
                         <Moon className="size-5 text-violet-300" />
                     </div>
