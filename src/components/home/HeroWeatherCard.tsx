@@ -6,13 +6,17 @@ import {
     Wind,
 } from "lucide-react";
 
+import en from "@/src/locales/en";
 import type { ForecastResponse } from "@/src/types";
+
+type Locale = typeof en;
 
 type Props = {
     data: ForecastResponse;
+    t: Locale;
 };
 
-export const HeroWeatherCard = ({ data }: Props) => {
+export const HeroWeatherCard = ({ data, t }: Props) => {
     const today = data.forecast.forecastday[0];
     const iconSrc = data.current.condition.icon.startsWith("//")
         ? `https:${data.current.condition.icon}`
@@ -51,7 +55,7 @@ export const HeroWeatherCard = ({ data }: Props) => {
                             </p>
 
                             <p className="text-sm text-[var(--color-text-muted)]">
-                                Feels like {Math.round(data.current.feelslike_c)}°C
+                                {t.feelsLike} {Math.round(data.current.feelslike_c)}°C
                             </p>
                         </div>
                     </div>
@@ -60,27 +64,27 @@ export const HeroWeatherCard = ({ data }: Props) => {
                         {[
                             {
                                 icon: ThermometerSun,
-                                label: "Max / Min",
+                                label: t.maxMin,
                                 value: `${Math.round(today.day.maxtemp_c)}° / ${Math.round(today.day.mintemp_c)}°`,
                             },
                             {
                                 icon: Wind,
-                                label: "Wind",
+                                label: t.wind,
                                 value: `${Math.round(data.current.wind_kph)} km/h`,
                             },
                             {
                                 icon: Droplets,
-                                label: "Humidity",
+                                label: t.humidity,
                                 value: `${data.current.humidity}%`,
                             },
                             {
                                 icon: Gauge,
-                                label: "Pressure",
+                                label: t.pressure,
                                 value: `${data.current.pressure_mb} hPa`,
                             },
                             {
                                 icon: Eye,
-                                label: "Visibility",
+                                label: t.visibility,
                                 value: `${data.current.vis_km} km`,
                             },
                         ].map(({ icon: Icon, label, value }) => (

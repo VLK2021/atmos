@@ -9,16 +9,19 @@ import {
     YAxis,
 } from "recharts";
 
+import en from "@/src/locales/en";
 import type { ForecastHour } from "@/src/types";
+
+type Locale = typeof en;
 
 type Props = {
     hours: ForecastHour[];
+    t: Locale;
 };
 
-export const HourlyForecastCard = ({ hours }: Props) => {
+export const HourlyForecastCard = ({ hours, t }: Props) => {
     const startHour = new Date().getHours();
     const nextHours = hours.slice(startHour, startHour + 12);
-
     const visibleHours = nextHours.length ? nextHours : hours.slice(0, 12);
 
     const chartData = visibleHours.map((hour) => ({
@@ -29,7 +32,7 @@ export const HourlyForecastCard = ({ hours }: Props) => {
 
     return (
         <section className="min-w-0 overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-[var(--shadow-card)] backdrop-blur-[18px]">
-            <h3 className="text-lg font-semibold">Hourly forecast</h3>
+            <h3 className="text-lg font-semibold">{t.hourlyForecast}</h3>
 
             <div className="mt-5 flex max-w-full gap-3 overflow-x-auto pb-2">
                 {visibleHours.map((hour) => {

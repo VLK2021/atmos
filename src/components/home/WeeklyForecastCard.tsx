@@ -1,13 +1,17 @@
+import en from "@/src/locales/en";
 import type { ForecastDay } from "@/src/types";
+
+type Locale = typeof en;
 
 type Props = {
     days: ForecastDay[];
+    t: Locale;
 };
 
-export const WeeklyForecastCard = ({ days }: Props) => {
+export const WeeklyForecastCard = ({ days, t }: Props) => {
     return (
         <section className="min-w-0 overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-[var(--shadow-card)] backdrop-blur-[18px]">
-            <h3 className="text-lg font-semibold">7-day forecast</h3>
+            <h3 className="text-lg font-semibold">{t.sevenDayForecast}</h3>
 
             <div className="mt-4 space-y-2">
                 {days.map((day) => {

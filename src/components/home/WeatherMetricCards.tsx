@@ -8,21 +8,29 @@ import {
     Wind,
 } from "lucide-react";
 
+import en from "@/src/locales/en";
 import type { CurrentWeather } from "@/src/types";
+
+type Locale = typeof en;
 
 type Props = {
     current: CurrentWeather;
+    t: Locale;
 };
 
-export const WeatherMetricCards = ({ current }: Props) => {
+export const WeatherMetricCards = ({ current, t }: Props) => {
     const items = [
-        { label: "Wind", value: `${current.wind_kph} km/h`, icon: Wind },
-        { label: "Humidity", value: `${current.humidity}%`, icon: Droplets },
-        { label: "Pressure", value: `${current.pressure_mb} hPa`, icon: Gauge },
-        { label: "Visibility", value: `${current.vis_km} km`, icon: Eye },
-        { label: "UV Index", value: `${current.uv}`, icon: Sun },
-        { label: "Cloud", value: `${current.cloud}%`, icon: Cloud },
-        { label: "Feels Like", value: `${current.feelslike_c}°C`, icon: Thermometer },
+        { label: t.wind, value: `${current.wind_kph} km/h`, icon: Wind },
+        { label: t.humidity, value: `${current.humidity}%`, icon: Droplets },
+        { label: t.pressure, value: `${current.pressure_mb} hPa`, icon: Gauge },
+        { label: t.visibility, value: `${current.vis_km} km`, icon: Eye },
+        { label: t.uvIndex, value: `${current.uv}`, icon: Sun },
+        { label: t.cloud, value: `${current.cloud}%`, icon: Cloud },
+        {
+            label: t.feelsLike,
+            value: `${current.feelslike_c}°C`,
+            icon: Thermometer,
+        },
     ];
 
     return (

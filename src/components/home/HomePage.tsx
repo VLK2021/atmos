@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 
 import { useLanguage } from "@/src/context";
+import en from "@/src/locales/en";
+import uk from "@/src/locales/uk";
 import type { ForecastResponse } from "@/src/types";
 
 import {
@@ -17,6 +19,7 @@ import {
 
 export const HomePage = () => {
     const { lang } = useLanguage();
+    const t = lang === "en" ? en : uk;
 
     const [data, setData] = useState<ForecastResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -32,9 +35,7 @@ export const HomePage = () => {
 
                 const response = await fetch(
                     `/api/weather/forecast?q=Lviv&lang=${lang}&days=7`,
-                    {
-                        signal: controller.signal,
-                    },
+                    { signal: controller.signal },
                 );
 
                 if (!response.ok) {
@@ -48,7 +49,7 @@ export const HomePage = () => {
                     return;
                 }
 
-                setError("Failed to load weather data");
+                setError(t.failedLoadWeather);
             } finally {
                 setLoading(false);
             }
@@ -57,7 +58,7 @@ export const HomePage = () => {
         loadWeather();
 
         return () => controller.abort();
-    }, [lang]);
+    }, [lang, t.failedLoadWeather]);
 
     if (loading) {
         return <HomeSkeleton />;
@@ -66,7 +67,7 @@ export const HomePage = () => {
     if (error || !data) {
         return (
             <section className="mx-auto w-full max-w-[1440px] rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-6 text-[var(--color-error)] shadow-[var(--shadow-card)] backdrop-blur-[18px]">
-                {error || "No weather data"}
+                {error || t.noWeatherData}
             </section>
         );
     }
@@ -75,21 +76,21 @@ export const HomePage = () => {
 
     return (
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 overflow-hidden">
-            <HeroWeatherCard data={data} />
+            <HeroWeatherCard data={data} t={t} />
 
             <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(340px,0.85fr)]">
                 <div className="flex min-w-0 flex-col gap-4">
-                    <HourlyForecastCard hours={today.hour} />
-                    <WeeklyForecastCard days={data.forecast.forecastday} />
+                    <HourlyForecastCard hours={today.hour} t={t} />
+                    <WeeklyForecastCard days={data.forecast.forecastday} t={t} />
                 </div>
 
                 <div className="flex min-w-0 flex-col gap-4">
-                    <AirQualityCard airQuality={data.current.air_quality} />
-                    <AstronomyCard astro={today.astro} />
+                    <AirQualityCard airQuality={data.current.air_quality} t={t} />
+                    <AstronomyCard astro={today.astro} t={t} />
                 </div>
             </div>
 
-            <WeatherMetricCards current={data.current} />
+            <WeatherMetricCards current={data.current} t={t} />
         </div>
     );
 };

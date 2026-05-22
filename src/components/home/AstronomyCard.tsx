@@ -1,15 +1,19 @@
 import { Moon, Sunrise, Sunset } from "lucide-react";
 
+import en from "@/src/locales/en";
 import type { Astro } from "@/src/types";
+
+type Locale = typeof en;
 
 type Props = {
     astro: Astro;
+    t: Locale;
 };
 
-export const AstronomyCard = ({ astro }: Props) => {
+export const AstronomyCard = ({ astro, t }: Props) => {
     return (
         <section className="min-w-0 overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-5 shadow-[var(--shadow-card)] backdrop-blur-[18px]">
-            <h3 className="text-lg font-semibold">Sun & Moon</h3>
+            <h3 className="text-lg font-semibold">{t.sunAndMoon}</h3>
 
             <div className="mt-6 rounded-[28px] border border-[var(--color-border)] bg-white/5 p-5">
                 <div className="relative mx-auto h-28 max-w-[360px] overflow-hidden">
@@ -29,7 +33,7 @@ export const AstronomyCard = ({ astro }: Props) => {
                 <div className="mt-4 grid grid-cols-2 gap-3">
                     <div className="min-w-0 rounded-2xl bg-white/5 p-4">
                         <p className="text-xs text-[var(--color-text-muted)]">
-                            Moonrise
+                            {t.moonrise}
                         </p>
 
                         <p className="mt-1 truncate font-semibold">
@@ -39,7 +43,7 @@ export const AstronomyCard = ({ astro }: Props) => {
 
                     <div className="min-w-0 rounded-2xl bg-white/5 p-4">
                         <p className="text-xs text-[var(--color-text-muted)]">
-                            Moonset
+                            {t.moonset}
                         </p>
 
                         <p className="mt-1 truncate font-semibold">
@@ -57,7 +61,7 @@ export const AstronomyCard = ({ astro }: Props) => {
                         </p>
 
                         <p className="truncate text-xs text-[var(--color-text-muted)]">
-                            Illumination {astro.moon_illumination}%
+                            {t.illumination} {astro.moon_illumination}%
                         </p>
                     </div>
                 </div>
