@@ -17,7 +17,7 @@ export const AppShell = ({ children }: AppShellProps) => {
                 <div className="flex min-w-0 flex-1 flex-col">
                     <Header />
 
-                    <main className="flex-1 overflow-y-auto px-4 py-4 sm:px-5 md:px-6 lg:px-8">
+                    <main className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto px-4 py-4 sm:px-5 md:px-6 lg:px-8">
                         {children}
                     </main>
                 </div>
