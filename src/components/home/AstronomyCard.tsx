@@ -16,75 +16,77 @@ type Props = {
 export const AstronomyCard = ({ astro, t }: Props) => {
     return (
         <motion.section
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="min-w-0 overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px] sm:p-5"
+            transition={{ duration: 0.35 }}
+            className="min-w-0 overflow-hidden rounded-[26px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
             <div className="flex items-center justify-between">
                 <div>
-                    <h3 className="text-base font-semibold sm:text-lg">
-                        {t.sunAndMoon}
-                    </h3>
-                    <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                        Solar cycle and lunar phase
+                    <h3 className="text-base font-semibold">{t.sunAndMoon}</h3>
+                    <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
+                        Solar arc and lunar data
                     </p>
                 </div>
 
-                <SunMedium className="size-5 text-amber-300" />
+                <SunMedium className="size-4 text-amber-300" />
             </div>
 
-            <div className="mt-5 rounded-[28px] border border-[var(--color-border)] bg-white/5 p-4">
-                <div className="relative mx-auto h-28 max-w-[360px] overflow-hidden">
-                    <div className="absolute left-0 right-0 top-12 h-36 rounded-t-full border-t-2 border-amber-400/80" />
+            <div className="mt-4 rounded-2xl border border-[var(--color-border)] bg-white/5 p-3">
+                <div className="relative mx-auto h-[92px] w-full max-w-[320px] overflow-hidden">
+                    <div className="absolute left-2 right-2 top-[46px] h-28 rounded-t-full border-t border-amber-400/80" />
 
                     <motion.div
-                        animate={{ x: ["0%", "380%"] }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute left-2 top-[42px] size-5 rounded-full bg-amber-300 shadow-[0_0_24px_rgba(251,191,36,0.8)]"
+                        animate={{ left: ["8%", "84%"] }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                        }}
+                        className="absolute top-[37px] size-4 rounded-full bg-amber-300 shadow-[0_0_18px_rgba(251,191,36,0.8)]"
                     />
 
-                    <div className="absolute left-0 top-16 flex items-center gap-2 text-xs">
-                        <Sunrise className="size-4 text-amber-300" />
+                    <div className="absolute bottom-0 left-0 flex items-center gap-1.5 text-[11px]">
+                        <Sunrise className="size-3.5 text-amber-300" />
                         <span>{astro.sunrise}</span>
                     </div>
 
-                    <div className="absolute right-0 top-16 flex items-center gap-2 text-xs">
-                        <Sunset className="size-4 text-orange-400" />
+                    <div className="absolute bottom-0 right-0 flex items-center gap-1.5 text-[11px]">
+                        <Sunset className="size-3.5 text-orange-400" />
                         <span>{astro.sunset}</span>
                     </div>
                 </div>
 
-                <div className="mt-4 grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl bg-white/5 p-3">
-                        <p className="text-xs text-[var(--color-text-muted)]">
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                    <div className="rounded-xl bg-white/5 p-2.5">
+                        <p className="text-[11px] text-[var(--color-text-muted)]">
                             {t.moonrise}
                         </p>
-                        <p className="mt-1 truncate text-sm font-semibold">
+                        <p className="mt-1 truncate text-xs font-semibold">
                             {astro.moonrise}
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white/5 p-3">
-                        <p className="text-xs text-[var(--color-text-muted)]">
+                    <div className="rounded-xl bg-white/5 p-2.5">
+                        <p className="text-[11px] text-[var(--color-text-muted)]">
                             {t.moonset}
                         </p>
-                        <p className="mt-1 truncate text-sm font-semibold">
+                        <p className="mt-1 truncate text-xs font-semibold">
                             {astro.moonset}
                         </p>
                     </div>
                 </div>
 
-                <div className="mt-3 flex items-center gap-3 rounded-2xl bg-white/5 p-3">
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-violet-400/15">
-                        <Moon className="size-6 text-violet-300" />
+                <div className="mt-2 flex items-center gap-3 rounded-xl bg-white/5 p-2.5">
+                    <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-violet-400/15">
+                        <Moon className="size-5 text-violet-300" />
                     </div>
 
                     <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold">
+                        <p className="truncate text-xs font-semibold">
                             {astro.moon_phase}
                         </p>
-                        <p className="truncate text-xs text-[var(--color-text-muted)]">
+                        <p className="truncate text-[11px] text-[var(--color-text-muted)]">
                             {t.illumination} {astro.moon_illumination}%
                         </p>
                     </div>

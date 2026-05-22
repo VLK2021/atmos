@@ -67,48 +67,37 @@ export const HeroWeatherCard = ({ data, t }: Props) => {
         },
         {
             icon: Navigation,
-            label: "Wind dir",
+            label: "Dir",
             value: data.current.wind_dir,
         },
     ];
 
     return (
         <motion.section
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="relative overflow-hidden rounded-[32px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px] sm:p-5 lg:p-6"
+            transition={{ duration: 0.35 }}
+            className="relative overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] backdrop-blur-[18px]"
         >
-            <motion.div
-                animate={{ x: [0, 18, 0], y: [0, -10, 0] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-24 -top-24 size-80 rounded-full bg-sky-400/20 blur-3xl"
-            />
+            <div className="absolute -right-20 -top-20 size-72 rounded-full bg-sky-400/20 blur-3xl" />
+            <div className="absolute -bottom-24 left-1/4 size-80 rounded-full bg-violet-500/15 blur-3xl" />
 
-            <motion.div
-                animate={{ x: [0, -14, 0], y: [0, 12, 0] }}
-                transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-32 left-1/4 size-96 rounded-full bg-violet-500/15 blur-3xl"
-            />
+            <div className="relative z-10 grid gap-4 xl:grid-cols-[0.85fr_1.15fr]">
+                <div className="rounded-[24px] border border-white/10 bg-white/10 p-4 backdrop-blur-xl">
+                    <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                        {t.currentLocation}
+                    </p>
 
-            <div className="relative z-10 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
-                <div className="flex min-w-0 flex-col justify-between rounded-[28px] border border-white/10 bg-white/10 p-5 backdrop-blur-xl">
-                    <div>
-                        <p className="text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-                            {t.currentLocation}
-                        </p>
+                    <h2 className="mt-1 truncate text-xl font-bold sm:text-2xl">
+                        {data.location.name}, {data.location.country}
+                    </h2>
 
-                        <h2 className="mt-2 truncate text-2xl font-bold sm:text-3xl">
-                            {data.location.name}, {data.location.country}
-                        </h2>
+                    <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                        {data.location.localtime}
+                    </p>
 
-                        <p className="mt-1 text-sm text-[var(--color-text-muted)]">
-                            {data.location.localtime}
-                        </p>
-                    </div>
-
-                    <div className="mt-8 flex items-center gap-4">
-                        <p className="text-6xl font-semibold tracking-[-0.08em] sm:text-7xl">
+                    <div className="mt-5 flex items-center gap-4">
+                        <p className="text-5xl font-semibold tracking-[-0.08em] sm:text-6xl">
                             {Math.round(data.current.temp_c)}°
                         </p>
 
@@ -116,52 +105,56 @@ export const HeroWeatherCard = ({ data, t }: Props) => {
                             <img
                                 src={iconSrc}
                                 alt={data.current.condition.text}
-                                className="size-16 object-contain sm:size-20"
+                                className="size-14 object-contain sm:size-16"
                             />
 
-                            <p className="truncate text-base font-semibold sm:text-lg">
+                            <p className="truncate text-sm font-semibold">
                                 {data.current.condition.text}
                             </p>
 
-                            <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                            <p className="mt-0.5 text-xs text-[var(--color-text-muted)]">
                                 {t.feelsLike} {Math.round(data.current.feelslike_c)}°C
                             </p>
                         </div>
                     </div>
 
-                    <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
-                        <div className="rounded-2xl bg-white/10 p-3">
-                            <p className="text-xs text-[var(--color-text-muted)]">
+                    <div className="mt-4 grid grid-cols-2 gap-2">
+                        <div className="rounded-xl bg-white/10 p-2.5">
+                            <p className="text-[11px] text-[var(--color-text-muted)]">
                                 {t.sunrise}
                             </p>
-                            <p className="mt-1 font-semibold">{today.astro.sunrise}</p>
+                            <p className="mt-0.5 text-xs font-semibold">
+                                {today.astro.sunrise}
+                            </p>
                         </div>
 
-                        <div className="rounded-2xl bg-white/10 p-3">
-                            <p className="text-xs text-[var(--color-text-muted)]">
+                        <div className="rounded-xl bg-white/10 p-2.5">
+                            <p className="text-[11px] text-[var(--color-text-muted)]">
                                 {t.sunset}
                             </p>
-                            <p className="mt-1 font-semibold">{today.astro.sunset}</p>
+                            <p className="mt-0.5 text-xs font-semibold">
+                                {today.astro.sunset}
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div className="grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-4">
+                <div className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-4">
                     {metrics.map(({ icon: Icon, label, value }, index) => (
                         <motion.div
                             key={label}
-                            initial={{ opacity: 0, y: 14 }}
+                            initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.035 }}
-                            className="min-w-0 rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white/15"
+                            transition={{ duration: 0.22, delay: index * 0.025 }}
+                            className="min-w-0 rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-xl transition hover:bg-white/15"
                         >
                             <Icon className="size-4 text-sky-300" />
 
-                            <p className="mt-4 truncate text-sm font-semibold">
+                            <p className="mt-3 truncate text-xs font-semibold">
                                 {value}
                             </p>
 
-                            <p className="mt-1 truncate text-xs text-[var(--color-text-muted)]">
+                            <p className="mt-0.5 truncate text-[11px] text-[var(--color-text-muted)]">
                                 {label}
                             </p>
                         </motion.div>
