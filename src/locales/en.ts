@@ -114,6 +114,17 @@ const en = {
     mapCoordinates: "Coordinates",
     mapZoomHint: "Drag, zoom and switch weather layers",
     gust: "Gust",
+    historyPageTitle: "Weather History",
+    historyPageSubtitle: "Historical weather archive for previous days",
+    historyTemperatureTrend: "Historical temperature trend",
+    historyRainTrend: "Historical rain trend",
+    historyDailyDetails: "Historical daily details",
+    historySummary: "History summary",
+    highestTemperature: "Highest temperature",
+    lowestTemperature: "Lowest temperature",
+    averageHumidity: "Average humidity",
+    totalPrecipitation: "Total precipitation",
+    historicalDays: "Historical days",
 };
 
 export default en;

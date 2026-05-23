@@ -114,6 +114,17 @@ const uk = {
     mapCoordinates: "Координати",
     mapZoomHint: "Перетягуй, масштабуй і перемикай погодні шари",
     gust: "Пориви",
+    historyPageTitle: "Історія погоди",
+    historyPageSubtitle: "Архів погоди за попередні дні",
+    historyTemperatureTrend: "Історичний тренд температури",
+    historyRainTrend: "Історія опадів",
+    historyDailyDetails: "Деталі по днях",
+    historySummary: "Підсумок історії",
+    highestTemperature: "Найвища температура",
+    lowestTemperature: "Найнижча температура",
+    averageHumidity: "Середня вологість",
+    totalPrecipitation: "Всього опадів",
+    historicalDays: "Днів історії",
 };
 
 export default uk;
