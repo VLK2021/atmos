@@ -29,6 +29,17 @@ const markerIcon = new Icon({
     iconAnchor: [12, 41],
 });
 
+const getWeatherMapTimeKey = () => {
+    const date = new Date();
+
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const hour = String(date.getUTCHours()).padStart(2, "0");
+
+    return `${year}${month}${day}${hour}`;
+};
+
 export const WeatherInteractiveMap = ({
                                           lat,
                                           lon,
@@ -37,11 +48,12 @@ export const WeatherInteractiveMap = ({
                                           opacity,
                                       }: Props) => {
     const center: LatLngExpression = [lat, lon];
+    const timeKey = getWeatherMapTimeKey();
 
     return (
         <MapContainer
             center={center}
-            zoom={8}
+            zoom={7}
             scrollWheelZoom
             zoomControl={false}
             className="h-full w-full"
@@ -49,8 +61,8 @@ export const WeatherInteractiveMap = ({
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
             <TileLayer
-                key={layer}
-                url={`https://weathermaps.weatherapi.com/${layer}/tiles/now/{z}/{x}/{y}.png`}
+                key={`${layer}-${timeKey}`}
+                url={`https://weathermaps.weatherapi.com/${layer}/tiles/${timeKey}/{z}/{x}/{y}.png`}
                 opacity={opacity}
             />
 
