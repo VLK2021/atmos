@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { useLanguage } from "@/src/context";
 import en from "@/src/locales/en";
@@ -21,9 +22,15 @@ import {
     WeeklyForecastCard,
 } from "@/src/components/home";
 
+const DEFAULT_CITY = "Lviv";
+
 export const HomePage = () => {
+    const searchParams = useSearchParams();
+
     const { lang } = useLanguage();
     const t = lang === "en" ? en : uk;
+
+    const selectedCity = searchParams.get("q") || DEFAULT_CITY;
 
     const [data, setData] = useState<ForecastResponse | null>(null);
     const [loading, setLoading] = useState(true);
@@ -37,13 +44,16 @@ export const HomePage = () => {
                 setLoading(true);
                 setError("");
 
-                const response = await fetch(
-                    `/api/weather/forecast?q=Lviv&lang=${lang}&days=7`,
-                    {
-                        signal: controller.signal,
-                        cache: "no-store",
-                    },
-                );
+                const params = new URLSearchParams({
+                    q: selectedCity,
+                    lang,
+                    days: "7",
+                });
+
+                const response = await fetch(`/api/weather/forecast?${params}`, {
+                    signal: controller.signal,
+                    cache: "no-store",
+                });
 
                 if (!response.ok) {
                     throw new Error("Failed to load weather data");
@@ -53,6 +63,7 @@ export const HomePage = () => {
                 setData(result);
             } catch (error) {
                 if (error instanceof DOMException && error.name === "AbortError") return;
+
                 setError(t.failedLoadWeather);
             } finally {
                 setLoading(false);
@@ -62,7 +73,7 @@ export const HomePage = () => {
         loadWeather();
 
         return () => controller.abort();
-    }, [lang, t.failedLoadWeather]);
+    }, [selectedCity, lang, t.failedLoadWeather]);
 
     if (loading) return <HomeSkeleton />;
 
@@ -94,6 +105,7 @@ export const HomePage = () => {
 
             <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
                 <PrecipitationCard day={today} t={t} />
+
                 <WeatherMapPreviewCard
                     t={t}
                     lat={data.location.lat}
