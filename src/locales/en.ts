@@ -113,6 +113,7 @@ const en = {
     pressureLayer: "Pressure",
     mapCoordinates: "Coordinates",
     mapZoomHint: "Drag, zoom and switch weather layers",
+    gust: "Gust",
 };
 
 export default en;

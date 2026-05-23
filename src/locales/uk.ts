@@ -113,6 +113,7 @@ const uk = {
     pressureLayer: "Тиск",
     mapCoordinates: "Координати",
     mapZoomHint: "Перетягуй, масштабуй і перемикай погодні шари",
+    gust: "Пориви",
 };
 
 export default uk;
