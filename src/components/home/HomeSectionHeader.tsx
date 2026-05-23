@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 import en from "@/src/locales/en";
@@ -13,10 +16,16 @@ type Props = {
 };
 
 export const HomeSectionHeader = ({ title, subtitle, href, t }: Props) => {
+    const searchParams = useSearchParams();
+    const queryString = searchParams.toString();
+
+    const hrefWithParams = queryString ? `${href}?${queryString}` : href;
+
     return (
         <div className="mb-3 flex items-start justify-between gap-3">
             <div className="min-w-0">
                 <h3 className="truncate text-base font-semibold">{title}</h3>
+
                 {subtitle && (
                     <p className="mt-0.5 truncate text-xs text-[var(--color-text-muted)]">
                         {subtitle}
@@ -25,7 +34,7 @@ export const HomeSectionHeader = ({ title, subtitle, href, t }: Props) => {
             </div>
 
             <Link
-                href={href}
+                href={hrefWithParams}
                 className="flex shrink-0 items-center gap-1 rounded-full bg-white/10 px-3 py-1.5 text-xs text-[var(--color-text-muted)] transition hover:bg-white/15 hover:text-[var(--color-text)]"
             >
                 {t.viewDetails}

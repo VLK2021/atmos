@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { NAVIGATION_ITEMS } from "@/src/constants/navigation.constants";
 import { useLanguage } from "@/src/context";
@@ -11,6 +11,9 @@ import uk from "@/src/locales/uk";
 
 export const Sidebar = () => {
     const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const queryString = searchParams.toString();
+
     const { lang } = useLanguage();
     const t = lang === "en" ? en : uk;
 
@@ -44,10 +47,14 @@ export const Sidebar = () => {
                     const isActive =
                         href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+                    const hrefWithParams = queryString
+                        ? `${href}?${queryString}`
+                        : href;
+
                     return (
                         <Link
                             key={href}
-                            href={href}
+                            href={hrefWithParams}
                             className={[
                                 "group flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200",
                                 isActive
@@ -69,7 +76,7 @@ export const Sidebar = () => {
                     </p>
 
                     <p className="mt-1 text-xs text-[var(--color-text-muted)]">
-                        Lviv, Ukraine
+                        {searchParams.get("q") || "Lviv, Ukraine"}
                     </p>
                 </div>
             </div>
