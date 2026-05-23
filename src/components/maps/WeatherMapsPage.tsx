@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
@@ -8,7 +7,8 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/src/context";
 import en from "@/src/locales/en";
 import uk from "@/src/locales/uk";
-import type { ForecastResponse, WeatherMapLayer } from "@/src/types";
+import type { ForecastResponse } from "@/src/types";
+import type { WeatherMapLayer } from "@/src/constants/weather-map.constants";
 
 import {
     MapHero,
@@ -17,15 +17,7 @@ import {
     MapSkeleton,
 } from "@/src/components/maps";
 
-const WeatherInteractiveMap = dynamic(
-    () =>
-        import("@/src/components/maps/WeatherInteractiveMap").then(
-            (mod) => mod.WeatherInteractiveMap,
-        ),
-    {
-        ssr: false,
-    },
-);
+import { WeatherInteractiveMap } from "@/src/components/maps/WeatherInteractiveMap";
 
 const DEFAULT_CITY = "Lviv";
 
@@ -41,8 +33,8 @@ export const WeatherMapsPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    const [activeLayer, setActiveLayer] = useState<WeatherMapLayer>("precip");
-    const [opacity, setOpacity] = useState(0.55);
+    const [activeLayer, setActiveLayer] = useState<WeatherMapLayer>("tmp2m");
+    const [opacity, setOpacity] = useState(0.68);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -70,7 +62,9 @@ export const WeatherMapsPage = () => {
                 const result: ForecastResponse = await response.json();
                 setData(result);
             } catch (error) {
-                if (error instanceof DOMException && error.name === "AbortError") return;
+                if (error instanceof DOMException && error.name === "AbortError") {
+                    return;
+                }
 
                 setError(t.failedLoadWeather);
             } finally {
@@ -126,7 +120,7 @@ export const WeatherMapsPage = () => {
                         />
                     </div>
 
-                    <div className="pointer-events-none absolute left-6 top-6 rounded-2xl bg-black/30 px-4 py-2 text-xs text-white backdrop-blur-md">
+                    <div className="pointer-events-none absolute bottom-6 left-6 z-[500] rounded-2xl bg-black/35 px-4 py-2 text-xs text-white backdrop-blur-md">
                         {data.location.name}, {data.location.country}
                     </div>
                 </motion.section>
