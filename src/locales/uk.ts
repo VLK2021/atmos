@@ -103,6 +103,16 @@ const uk = {
     nitrogenDioxide: "NO₂",
     sulfurDioxide: "SO₂",
     carbonMonoxide: "CO",
+    mapsPageTitle: "Погодні карти",
+    mapsPageSubtitle: "Інтерактивні погодні шари та карта",
+    mapLayer: "Шар карти",
+    mapOpacity: "Прозорість шару",
+    precipitationLayer: "Опади",
+    temperatureLayer: "Температура",
+    windLayer: "Вітер",
+    pressureLayer: "Тиск",
+    mapCoordinates: "Координати",
+    mapZoomHint: "Перетягуй, масштабуй і перемикай погодні шари",
 };
 
 export default uk;

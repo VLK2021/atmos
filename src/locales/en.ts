@@ -103,6 +103,16 @@ const en = {
     nitrogenDioxide: "NO₂",
     sulfurDioxide: "SO₂",
     carbonMonoxide: "CO",
+    mapsPageTitle: "Weather Maps",
+    mapsPageSubtitle: "Interactive weather layers and live map preview",
+    mapLayer: "Map layer",
+    mapOpacity: "Layer opacity",
+    precipitationLayer: "Precipitation",
+    temperatureLayer: "Temperature",
+    windLayer: "Wind",
+    pressureLayer: "Pressure",
+    mapCoordinates: "Coordinates",
+    mapZoomHint: "Drag, zoom and switch weather layers",
 };
 
 export default en;
