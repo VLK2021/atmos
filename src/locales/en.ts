@@ -57,17 +57,27 @@ const en = {
     moonStatus: "Moon status",
     isSunUp: "Sun is up",
     isMoonUp: "Moon is up",
-
+    airQualityPageTitle: "Air Quality",
+    airQualityPageSubtitle: "Detailed pollution, particles and air safety overview",
+    airQualityOverview: "Air quality overview",
+    pollutants: "Pollutants",
+    pollutionChart: "Pollution chart",
+    airQualityDetails: "Air quality details",
+    epaIndex: "EPA Index",
+    defraIndex: "DEFRA Index",
+    good: "Good",
+    moderate: "Moderate",
+    unhealthySensitive: "Unhealthy for sensitive groups",
+    unhealthy: "Unhealthy",
+    veryUnhealthy: "Very unhealthy",
+    hazardous: "Hazardous",
     appName: "Atmos",
     appDescription: "Premium Weather",
-
     searchPlaceholder: "Search for a city...",
     currentLocation: "Current location",
-
     loadingWeather: "Loading weather...",
     failedLoadWeather: "Failed to load weather data",
     noWeatherData: "No weather data",
-
     feelsLike: "Feels like",
     maxMin: "Max / Min",
     wind: "Wind",
@@ -78,10 +88,8 @@ const en = {
     cloud: "Cloud",
     sevenDayForecast: "7-day forecast",
     hourlyForecast: "Hourly forecast",
-
     airQualityIndex: "Air quality",
     aqiUs: "AQI US",
-
     sunAndMoon: "Sun & Moon",
     sunrise: "Sunrise",
     sunset: "Sunset",
@@ -89,7 +97,6 @@ const en = {
     moonset: "Moonset",
     moonPhase: "Moon phase",
     illumination: "Illumination",
-
     pm25: "PM2.5",
     pm10: "PM10",
     ozone: "O₃",

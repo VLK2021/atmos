@@ -57,17 +57,27 @@ const uk = {
     moonStatus: "Статус місяця",
     isSunUp: "Сонце над горизонтом",
     isMoonUp: "Місяць над горизонтом",
-
+    airQualityPageTitle: "Якість повітря",
+    airQualityPageSubtitle: "Детальний огляд забруднення, частинок і безпеки повітря",
+    airQualityOverview: "Огляд якості повітря",
+    pollutants: "Забруднювачі",
+    pollutionChart: "Графік забруднення",
+    airQualityDetails: "Деталі якості повітря",
+    epaIndex: "EPA-індекс",
+    defraIndex: "DEFRA-індекс",
+    good: "Добре",
+    moderate: "Помірно",
+    unhealthySensitive: "Шкідливо для чутливих груп",
+    unhealthy: "Шкідливо",
+    veryUnhealthy: "Дуже шкідливо",
+    hazardous: "Небезпечно",
     appName: "Atmos",
     appDescription: "Преміальна погода",
-
     searchPlaceholder: "Пошук міста...",
     currentLocation: "Поточна локація",
-
     loadingWeather: "Завантаження погоди...",
     failedLoadWeather: "Не вдалося завантажити погодні дані",
     noWeatherData: "Немає погодних даних",
-
     feelsLike: "Відчувається як",
     maxMin: "Макс / Мін",
     wind: "Вітер",
@@ -78,10 +88,8 @@ const uk = {
     cloud: "Хмарність",
     sevenDayForecast: "Прогноз на 7 днів",
     hourlyForecast: "Погодинний прогноз",
-
     airQualityIndex: "Якість повітря",
     aqiUs: "AQI US",
-
     sunAndMoon: "Сонце і Місяць",
     sunrise: "Схід сонця",
     sunset: "Захід сонця",
@@ -89,7 +97,6 @@ const uk = {
     moonset: "Захід місяця",
     moonPhase: "Фаза місяця",
     illumination: "Освітленість",
-
     pm25: "PM2.5",
     pm10: "PM10",
     ozone: "O₃",
