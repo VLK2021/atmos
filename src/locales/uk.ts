@@ -125,6 +125,21 @@ const uk = {
     averageHumidity: "Середня вологість",
     totalPrecipitation: "Всього опадів",
     historicalDays: "Днів історії",
+    alertsPageTitle: "Погодні сповіщення",
+    alertsPageSubtitle: "Штормові попередження та активні погодні ризики",
+    activeAlerts: "Активні сповіщення",
+    noActiveAlerts: "Немає активних погодних сповіщень",
+    noActiveAlertsDescription: "Atmos не виявляє активних серйозних погодних попереджень для цієї локації.",
+    alertSeverity: "Серйозність",
+    alertUrgency: "Терміновість",
+    alertAreas: "Зони впливу",
+    alertEffective: "Початок",
+    alertExpires: "Завершення",
+    alertInstruction: "Інструкція",
+    alertEvent: "Подія",
+    alertsOverview: "Огляд сповіщень",
+    alertsSafety: "Монітор безпеки",
+    alertsChecked: "Перевірено через WeatherAPI alerts feed",
 };
 
 export default uk;

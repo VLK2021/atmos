@@ -1,5 +1,13 @@
-import { RouteComingSoon } from "@/src/components/common";
+import type { Metadata } from "next";
 
-export default function AlertsPage() {
-    return <RouteComingSoon title="Weather Alerts" />;
+import { AlertsPage } from "@/src/components/alerts";
+
+export const metadata: Metadata = {
+    title: "Weather Alerts | Atmos",
+    description:
+        "Weather alerts dashboard with severe weather warnings, affected areas, urgency, severity and safety instructions.",
+};
+
+export default function AlertsRoutePage() {
+    return <AlertsPage />;
 }

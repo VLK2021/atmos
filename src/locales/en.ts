@@ -125,6 +125,21 @@ const en = {
     averageHumidity: "Average humidity",
     totalPrecipitation: "Total precipitation",
     historicalDays: "Historical days",
+    alertsPageTitle: "Weather Alerts",
+    alertsPageSubtitle: "Severe weather warnings and active alerts",
+    activeAlerts: "Active alerts",
+    noActiveAlerts: "No active weather alerts",
+    noActiveAlertsDescription: "Atmos is not detecting active severe weather warnings for this location.",
+    alertSeverity: "Severity",
+    alertUrgency: "Urgency",
+    alertAreas: "Affected areas",
+    alertEffective: "Effective",
+    alertExpires: "Expires",
+    alertInstruction: "Instruction",
+    alertEvent: "Event",
+    alertsOverview: "Alerts overview",
+    alertsSafety: "Safety monitor",
+    alertsChecked: "Checked from WeatherAPI alerts feed",
 };
 
 export default en;
