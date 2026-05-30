@@ -47,7 +47,7 @@ export const HomePage = () => {
                 const params = new URLSearchParams({
                     q: selectedCity,
                     lang,
-                    days: "7",
+                    days: "3",
                 });
 
                 const response = await fetch(`/api/weather/forecast?${params}`, {
